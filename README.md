@@ -3,7 +3,8 @@
 
 
 ```
-git clone <URL>
+git clone https://github.com/moobay9/vagrant-concrete5-shell.git
+cd vagrant-concrete5-shell
 vagrant up
 ```
 
