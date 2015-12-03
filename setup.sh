@@ -40,6 +40,15 @@ sed -i "s/^Alias \/icons\//#Alias \/icons\//" $HTTPCNF
 sed -i "s/^Alias \/error\//#Alias \/error\//" $HTTPCNF
 sed -i "s/End of proxy directives\./End of proxy directives\.\n\nTraceEnable Off\n/g" $HTTPCNF
 
+cat << _EOFVH_ > /etc/httpd/conf.d/concrete5.conf
+#---- concrete5 -------------------------------------\n<VirtualHost *:80>\n\tServerAdmin\twebmaster@example.com\n\tDocumentRoot\t/vagrant/htdocs\n\tServerName\tconcrete5.vagrant.localhost\n\n\tDirectoryIndex\t\tindex.html index.php\n\tAddDefaultCharset\tUTF-8\n\n\t<Directory /vagrant/htdocs>\n\t\tOptions\t\tFollowSymLinks\n\t\tAllowOverride\tAll\n\t</Directory>\n</VirtualHost>\n\n
+_EOFVH_
+sed -i 's/\\t/\t/g' /etc/httpd/conf.d/concrete5.conf
+sed -i 's/\\n/\n/g' /etc/httpd/conf.d/concrete5.conf
+
+
+mkdir /vagrant/htdocs
+
 service httpd start
 chkconfig httpd on
 
@@ -117,10 +126,11 @@ mysql -uroot -p${MYSQL_PASSWORD} -e "grant all privileges on \`${CONCRETE5_DB_NA
 yum -y install unzip
 curl -sS -o concrete5.zip ${CONCRETE5_DL_PATH}
 unzip concrete5.zip
-mv concrete5.7.*/* /var/www/html/
-chmod 777 -R /var/www/html/{application/files/,application/config/,packages/,updates/}
+mv concrete5.7.*/* /vagrant/htdocs
+chmod 777 -R /vagrant/htdocs/{application/files/,application/config/,packages/,updates/}
 rm -rf concrete5*
 
+service httpd restart
 
 ### iptables
 iptables -I INPUT 5 -m state --state NEW -m tcp -p tcp --dport 80 -j ACCEPT
