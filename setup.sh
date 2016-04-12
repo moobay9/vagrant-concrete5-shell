@@ -41,7 +41,7 @@ sed -i "s/^Alias \/error\//#Alias \/error\//" $HTTPCNF
 sed -i "s/End of proxy directives\./End of proxy directives\.\n\nTraceEnable Off\n/g" $HTTPCNF
 
 cat << _EOFVH_ > /etc/httpd/conf.d/concrete5.conf
-#---- concrete5 -------------------------------------\n<VirtualHost *:80>\n\tServerAdmin\twebmaster@example.com\n\tDocumentRoot\t/vagrant/htdocs\n\tServerName\tconcrete5.vagrant.localhost\n\n\tDirectoryIndex\t\tindex.html index.php\n\tAddDefaultCharset\tUTF-8\n\n\t<Directory /vagrant/htdocs>\n\t\tOptions\t\tFollowSymLinks\n\t\tAllowOverride\tAll\n\t</Directory>\n</VirtualHost>\n\n
+#---- concrete5 -------------------------------------\n<VirtualHost *:80>\n\tServerAdmin\twebmaster@example.com\n\tDocumentRoot\t/vagrant/htdocs\n\tServerName\tconcrete5.vagrant.localhost\n\n\tDirectoryIndex\t\tindex.html index.php\n\tAddDefaultCharset\tUTF-8\n\n\t<Directory /vagrant/htdocs>\n\t\tOptions\t\tFollowSymLinks\n\t\tAllowOverride\tAll\n\t\tEnableSendfile\tOff\n\t</Directory>\n</VirtualHost>\n\n
 _EOFVH_
 sed -i 's/\\t/\t/g' /etc/httpd/conf.d/concrete5.conf
 sed -i 's/\\n/\n/g' /etc/httpd/conf.d/concrete5.conf
