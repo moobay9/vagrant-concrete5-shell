@@ -3,7 +3,7 @@
 
 ### Parameter
 
-CONCRETE5_DL_PATH="http://www.concrete5.org/download_file/-/view/79252/"
+CONCRETE5_DL_PATH="https://www.concrete5.org/download_file/-/view/93074/"
 
 CONCRETE5_DB_NAME=concrete5
 CONCRETE5_DB_USER=c5_user
@@ -54,7 +54,7 @@ chkconfig httpd on
 
 
 ### PHP Install
-yum -y --enablerepo=remi,remi-php55 install php php-devel php-gd php-mbstring php-pear php-bcmath php-mysql php-pdo
+yum -y --enablerepo=remi,remi-php71 install php php-devel php-gd php-mbstring php-pear php-bcmath php-mysqlnd php-pdo php-xml php-json php-pecl-zip
 
 echo "output_handler = mb_output_handler" >> ${PHPINI}
 echo "default_charset = \"UTF-8\"" >> ${PHPINI}
@@ -126,7 +126,7 @@ mysql -uroot -p${MYSQL_PASSWORD} -e "grant all privileges on \`${CONCRETE5_DB_NA
 yum -y install unzip
 curl -sS -o concrete5.zip ${CONCRETE5_DL_PATH}
 unzip concrete5.zip
-mv concrete5.7.*/* /vagrant/htdocs
+mv concrete5-*/* /vagrant/htdocs
 chmod 777 -R /vagrant/htdocs/{application/files/,application/config/,packages/,updates/}
 rm -rf concrete5*
 
