@@ -20,3 +20,9 @@ vagrant up
 
 * URL
   http://172.16.10.10/
+
+### 旧バージョンの clone 方法
+
+```
+git clone -b 5.7 https://github.com/moobay9/vagrant-concrete5-shell.git
+```
