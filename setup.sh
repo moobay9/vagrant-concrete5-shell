@@ -17,8 +17,10 @@ MYCNF=/etc/my.cnf
 PHPINI=/etc/php.ini
 
 ### rpm
-rpm -ivh http://ftp.iij.ad.jp/pub/linux/fedora/epel/6/i386/epel-release-6-8.noarch.rpm
-rpm -ivh http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
+wget -q http://ftp.iij.ad.jp/pub/linux/fedora/epel/6/i386/epel-release-6-8.noarch.rpm
+wget -q http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
+rpm -ivh epel-release-6-8.noarch.rpm
+rpm -ivh remi-release-6.rpm
 
 sed -i 's/^#baseurl/baseurl/g' /etc/yum.repos.d/epel.repo
 sed -i 's/^mirrorlist/#mirrorlist/g' /etc/yum.repos.d/epel.repo
