@@ -3,7 +3,7 @@
 
 ### Parameter
 
-CONCRETE5_DL_PATH="https://www.concrete5.org/download_file/-/view/93074/"
+CONCRETE5_DL_PATH="https://www.concrete5.org/download_file/-/view/100595/"
 
 CONCRETE5_DB_NAME=concrete5
 CONCRETE5_DB_USER=c5_user
@@ -15,6 +15,9 @@ MYSQL_PASSWORD=mysqlpassword
 HTTPCNF=/etc/httpd/conf/httpd.conf
 MYCNF=/etc/my.cnf
 PHPINI=/etc/php.ini
+
+### Timezone
+\cp /usr/share/zoneinfo/Japan /etc/localtime
 
 ### rpm
 wget -q http://ftp.iij.ad.jp/pub/linux/fedora/epel/6/i386/epel-release-6-8.noarch.rpm
