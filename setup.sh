@@ -114,7 +114,7 @@ systemctl enable nginx
 ### MySQL Install
 yum -y install mariadb mariadb-server mariadb-devel
 systemctl start mariadb.service
-systemctl status mariadb.service
+systemctl enable mariadb.service
 
 # rm -rf /var/lib/mysql
 # rm -f /etc/my.cnf
